@@ -1,4 +1,4 @@
-# commlib
+# corelib
 android公共库<br/>
 
 Step 1. Add the JitPack repository to your root build.gradle <br/>
