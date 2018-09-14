@@ -32,13 +32,13 @@ public class MultimediaUtils {
         }
         if (EasyPermissions.hasPermissions(fragment.getContext(), Permissions.PERMISSIONS_PHOTO)) {
             Matisse.from(fragment)
-                    .choose(MimeType.ofAll(), false)
+                    .choose(MimeType.ofImage(), false)
                     .countable(true)
                     .maxSelectable(9)
                     .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
                     .thumbnailScale(0.85f)
                     .imageEngine(new CustmoerGlideEngine())
-                    .theme(R.style.Matisse_Dracula)
+                    .theme(R.style.Matisse_Zhihu)
                     .forResult(PermissionCode.PERMISSION_CODE_PHOTO);
         } else {
             LogUtils.e("some necessary permissions are not been granted");
@@ -47,13 +47,13 @@ public class MultimediaUtils {
     public static void takePhoto(@NonNull Activity activity) {
         if (EasyPermissions.hasPermissions(activity, Permissions.PERMISSIONS_PHOTO)) {
             Matisse.from(activity)
-                    .choose(MimeType.ofAll(), false)
+                    .choose(MimeType.ofImage(), false)
                     .countable(true)
                     .maxSelectable(9)
                     .restrictOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
                     .thumbnailScale(0.85f)
                     .imageEngine(new CustmoerGlideEngine())
-                    .theme(R.style.Matisse_Dracula)
+                    .theme(R.style.Matisse_Zhihu)
                     .forResult(PermissionCode.PERMISSION_CODE_PHOTO);
         } else {
             LogUtils.e("some necessary permissions are not been granted");
