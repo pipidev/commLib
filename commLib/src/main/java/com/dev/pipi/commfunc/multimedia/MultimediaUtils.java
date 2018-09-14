@@ -54,7 +54,7 @@ public class MultimediaUtils {
                     .thumbnailScale(0.85f)
                     .imageEngine(new CustmoerGlideEngine())
                     .theme(R.style.Matisse_Dracula)
-                    .forResult(101);
+                    .forResult(PermissionCode.PERMISSION_CODE_PHOTO);
         } else {
             LogUtils.e("some necessary permissions are not been granted");
         }

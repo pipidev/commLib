@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.dev.pipi.commlib.R;
 import com.dev.pipi.commlib.service.NetWorkService;
 import com.dev.pipi.commlib.util.PermissionUtils;
+import com.dev.pipi.commui.CircleDialog;
 import com.dev.pipi.commui.CustomerDialog;
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
@@ -34,8 +35,9 @@ import pub.devrel.easypermissions.EasyPermissions;
  */
 
 public abstract class BaseActivity extends RxAppCompatActivity implements EasyPermissions.PermissionCallbacks {
-    private CustomerDialog customerDialog;
-    protected View view;
+    private CustomerDialog mCustomerDialog;
+    private CircleDialog mCircleDialog;
+    protected View mView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,8 +45,8 @@ public abstract class BaseActivity extends RxAppCompatActivity implements EasyPe
         //竖屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         doSupportImmersion(isSupportImmersion());
-        view = View.inflate(this, getLayoutId(), null);
-        setContentView(view);
+        mView = View.inflate(this, getLayoutId(), null);
+        setContentView(mView);
         startService(new Intent(this, NetWorkService.class));
         init();
     }
@@ -83,17 +85,30 @@ public abstract class BaseActivity extends RxAppCompatActivity implements EasyPe
     protected abstract void init();
 
     protected abstract int getLayoutId();
-    protected void showProgress() {
-        if (customerDialog == null) {
-            customerDialog = new CustomerDialog();
+    protected void showCustomerLoading() {
+        if (mCustomerDialog == null) {
+            mCustomerDialog = new CustomerDialog();
         }
-        if (!customerDialog.isAdded()) {
-            customerDialog.show(getSupportFragmentManager(),BaseActivity.class.getSimpleName());
+        if (!mCustomerDialog.isAdded()) {
+            mCustomerDialog.show(getSupportFragmentManager(),BaseActivity.class.getSimpleName());
         }
     }
-    protected void cancelProgress() {
-        if (customerDialog != null && customerDialog.isAdded()) {
-            customerDialog.dismiss();
+    protected void hideCustomerLoading() {
+        if (mCustomerDialog != null && mCustomerDialog.isAdded()) {
+            mCustomerDialog.dismiss();
+        }
+    }
+    protected void showCircleLoading() {
+        if (mCircleDialog == null) {
+            mCircleDialog = new CircleDialog();
+        }
+        if (!mCircleDialog.isAdded()) {
+            mCircleDialog.show(getSupportFragmentManager(),BaseActivity.class.getSimpleName());
+        }
+    }
+    protected void hideCircleLoading() {
+        if (mCircleDialog != null && mCircleDialog.isAdded()) {
+            mCircleDialog.dismiss();
         }
     }
     //权限处理 AfterPermissionGranted中一定要做处理

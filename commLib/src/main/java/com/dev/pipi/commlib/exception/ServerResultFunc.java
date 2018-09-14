@@ -1,6 +1,6 @@
 package com.dev.pipi.commlib.exception;
 
-import com.dev.pipi.commlib.base.BaseData;
+import com.dev.pipi.commlib.base.BaseHttpResult;
 
 import io.reactivex.functions.Function;
 
@@ -14,26 +14,19 @@ import io.reactivex.functions.Function;
  * </pre>
  */
 
-public class ServerResultFunc<T> implements Function<BaseData<T>,T> {
-
+public class ServerResultFunc<T> implements Function<BaseHttpResult<T>,T> {
     @Override
-    public T apply(BaseData<T> baseData) throws Exception {
-        if (baseData.getStatus() != 200) {
-            if (baseData.getMsg() == null) {
-                throw new ApiException(baseData.getStatus(), "服务器发生错误");
+    public T apply(BaseHttpResult<T> httpResult) throws Exception {
+        if (!httpResult.isSuccess()) {
+            if (httpResult.getMsg() == null) {
+                throw new ApiException(httpResult.getCode(), "服务器发生错误");
             }
-            throw new ApiException(baseData.getStatus(),baseData.getMsg());
+            throw new ApiException(httpResult.getCode(),httpResult.getMsg());
         }
-        if (baseData.getData() == null) {
+        if (httpResult.getData() == null) {
             throw new ApiException(800, "暂无数据");
         }
-        /*if (baseData.getData() instanceof Collection) {
-            Collection data = (Collection) baseData.getData();
-            if (data.isEmpty()) {
-                throw new ApiException(800, "暂无数据");
-            }
-        }*/
-        return baseData.getData();
+        return httpResult.getData();
     }
 }
 

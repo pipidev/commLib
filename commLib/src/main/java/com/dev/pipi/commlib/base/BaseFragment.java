@@ -21,6 +21,7 @@ import com.dev.pipi.commlib.comm.PermissionCode;
 import com.dev.pipi.commlib.comm.Permissions;
 import com.dev.pipi.commlib.util.EventBusUtils;
 import com.dev.pipi.commlib.util.PermissionUtils;
+import com.dev.pipi.commui.CircleDialog;
 import com.dev.pipi.commui.CustomerDialog;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.trello.rxlifecycle2.components.support.RxFragment;
@@ -48,7 +49,8 @@ public abstract class BaseFragment extends RxFragment implements EasyPermissions
     private boolean isVisible = false;//当前Fragment是否可见
     private boolean isInitView = false;//view是否初始化完毕
     private boolean isFirstLoad = true;//是否是第一次加载数据
-    private CustomerDialog customerDialog;
+    private CustomerDialog mCustomerDialog;
+    private CircleDialog mCircleDialog;
     private boolean isCreateNew = false;
 
     @Nullable
@@ -64,20 +66,32 @@ public abstract class BaseFragment extends RxFragment implements EasyPermissions
     public boolean isCreateNew() {
         return isCreateNew;
     }
-    protected void showProgress() {
-        if (customerDialog == null) {
-            customerDialog = new CustomerDialog();
+    protected void showCustomerLoading() {
+        if (mCustomerDialog == null) {
+            mCustomerDialog = new CustomerDialog();
         }
-        if (!customerDialog.isAdded()) {
-            customerDialog.show(getChildFragmentManager(),BaseFragment.class.getSimpleName());
-        }
-    }
-    protected void cancelProgress() {
-        if (customerDialog != null && customerDialog.isAdded()) {
-            customerDialog.dismiss();
+        if (!mCustomerDialog.isAdded()) {
+            mCustomerDialog.show(getChildFragmentManager(),BaseFragment.class.getSimpleName());
         }
     }
-
+    protected void hideCustomerLoading() {
+        if (mCustomerDialog != null && mCustomerDialog.isAdded()) {
+            mCustomerDialog.dismiss();
+        }
+    }
+    protected void showCircleLoading() {
+        if (mCircleDialog == null) {
+            mCircleDialog = new CircleDialog();
+        }
+        if (!mCircleDialog.isAdded()) {
+            mCircleDialog.show(getChildFragmentManager(),BaseActivity.class.getSimpleName());
+        }
+    }
+    protected void hideCircleLoading() {
+        if (mCircleDialog != null && mCircleDialog.isAdded()) {
+            mCircleDialog.dismiss();
+        }
+    }
     private void lazyLoadData() {
         if (!isFirstLoad || !isVisible || !isInitView) {
             return;

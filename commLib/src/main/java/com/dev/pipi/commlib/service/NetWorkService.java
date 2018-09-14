@@ -41,7 +41,7 @@ public class NetWorkService extends Service {
             @Override
             public void onNetWorkListener(int netWorkType) {
                 if (netWorkType == NetUtil.NETWORK_NONE) {
-                    ToastUtils.showShort("当前无网络,请检查网络!");
+                    ToastUtils.showShort("网络断开,请检查网络连接!");
                 }
             }
         });

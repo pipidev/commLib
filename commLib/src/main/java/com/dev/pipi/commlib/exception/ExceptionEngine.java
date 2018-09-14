@@ -34,10 +34,10 @@ public class ExceptionEngine {
     private static final int BAD_GATEWAY = 502;
     private static final int SERVICE_UNAVAILABLE = 503;
     private static final int GATEWAY_TIMEOUT = 504;
-    private static final int PARSE_ERROR = 1 << 1;
-    private static final int NETWORD_ERROR = 1 << 2;
-    public static final int UNKNOWN = 1 << 3;
-    public static final int CUSTOMER_ERROR = 1<<4;
+    private static final int PARSE_ERROR = 600;
+    private static final int NETWORD_ERROR = 601;
+    public static final int UNKNOWN = 602;
+    public static final int CUSTOMER_ERROR = 603;
     public static ApiException handleException(Throwable e) {
         ApiException ex;
         if (e instanceof HttpException) {             //HTTP错误
