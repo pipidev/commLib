@@ -15,4 +15,7 @@
     <string name="tip_loading">加载中...</string>
     <string name="config_ip">配置ip</string>
     <string name="confirm">确认</string>
+    <string name="nfc_open">打开NFC</string>
+    <string name="nfc_open_tip">此功能需打开NFC</string>
+    <string name="cancel">取消</string>
 </resources>
