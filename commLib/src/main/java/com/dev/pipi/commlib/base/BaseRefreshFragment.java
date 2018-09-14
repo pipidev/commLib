@@ -147,14 +147,4 @@ public abstract class BaseRefreshFragment<T> extends BaseFragment implements Bas
         cancelRefresh(mRefreshLayout);
     }
 
-    @Override
-    public void showLoading() {
-        showProgress();
-    }
-
-    @Override
-    public void hideLoading() {
-        cancelProgress();
-    }
-
 }
