@@ -12,12 +12,12 @@ import com.dev.pipi.commlib.base.BaseActivity;
  * </pre>
  */
 
-public abstract class BaseMvpActivity<V extends IView,T extends BasePrsenter<V>> extends BaseActivity implements IView{
+public abstract class BaseMvpActivity<T extends BasePrsenter<BaseMvpActivity>> extends BaseActivity implements IView{
     protected T mBasePresenter;
     @Override
     protected void init() {
         mBasePresenter = getPresenter();
-        mBasePresenter.attachView((V) this);
+        mBasePresenter.attachView(this);
     }
 
     protected abstract T getPresenter();

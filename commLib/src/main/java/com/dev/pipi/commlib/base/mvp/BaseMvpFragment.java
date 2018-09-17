@@ -12,12 +12,12 @@ import com.dev.pipi.commlib.base.BaseFragment;
  * </pre>
  */
 
-public abstract class BaseMvpFragment<V extends IView,T extends BasePrsenter<V>> extends BaseFragment implements IView{
+public abstract class BaseMvpFragment<T extends BasePrsenter<BaseMvpFragment>> extends BaseFragment implements IView{
     protected T mBasePresenter;
     @Override
     protected void init() {
         mBasePresenter = getPresenter();
-        mBasePresenter.attachView((V) this);
+        mBasePresenter.attachView(this);
     }
 
     @Override
