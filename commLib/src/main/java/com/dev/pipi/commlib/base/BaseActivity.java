@@ -21,6 +21,7 @@ import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
 import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
 
@@ -47,6 +48,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements EasyPe
         doSupportImmersion(isSupportImmersion());
         mView = View.inflate(this, getLayoutId(), null);
         setContentView(mView);
+        ButterKnife.bind(this);
         startService(new Intent(this, NetWorkService.class));
         init();
     }

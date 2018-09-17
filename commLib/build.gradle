@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jakewharton.butterknife'
 group='com.github.pipidev' // 指定group，com.github.<用户名>
 android {
     compileSdkVersion 26
@@ -62,6 +63,9 @@ dependencies {
     api 'cjt.library.wheel:camera:1.1.9'
     //greendao
     api 'org.greenrobot:greendao:3.2.2'
+    //butterknife
+    api 'com.jakewharton:butterknife:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
 }
 // 指定编码
 tasks.withType(JavaCompile) {

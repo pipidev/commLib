@@ -29,6 +29,7 @@ import com.zhihu.matisse.Matisse;
 
 import java.util.List;
 
+import butterknife.ButterKnife;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.AppSettingsDialog;
 import pub.devrel.easypermissions.EasyPermissions;
@@ -59,6 +60,7 @@ public abstract class BaseFragment extends RxFragment implements EasyPermissions
         if (isCreateNew()|| mRootView == null) {
             mRootView = inflater.inflate(getLayoutId(), container, false);
         }
+        ButterKnife.bind(this, mRootView);
         setHasOptionsMenu(true);
         return mRootView;
     }
