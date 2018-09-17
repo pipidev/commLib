@@ -50,7 +50,7 @@ dependencies {
     api 'com.github.bumptech.glide:glide:4.0.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0'
     //工具类
-    api 'com.blankj:utilcode:1.8.3'
+    api 'com.blankj:utilcode:1.20.3'
     //上下拉刷新
     api 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.4'
     //eventbus
